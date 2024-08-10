@@ -1,0 +1,12 @@
+import{S as l,i as a}from"./assets/vendor-8c59ed88.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))r(e);new MutationObserver(e=>{for(const n of e)if(n.type==="childList")for(const i of n.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&r(i)}).observe(document,{childList:!0,subtree:!0});function o(e){const n={};return e.integrity&&(n.integrity=e.integrity),e.referrerPolicy&&(n.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?n.credentials="include":e.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function r(e){if(e.ep)return;e.ep=!0;const n=o(e);fetch(e.href,n)}})();function u(s){const t="https://pixabay.com/api",o="45306950-544d7ee3c7cf7db24fb2a5eae",r=new URLSearchParams({key:o,q:s,image_type:"photo",orientation:"horizontal",safesearch:"true"});return fetch(`${t}/?${r.toString()}`).then(e=>{if(!e.ok)throw new Error(e.status);return e.json()}).catch(e=>(console.error("Error:",e),null))}function d(s){const t=document.getElementById("gallery");if(t.innerHTML="",s.length===0){iziToast.error({title:"Error",message:"Sorry, there are no images matching your search query. Please try again!"});return}const o=s.map(r=>`
+          <a class="gallery-item" href="${r.largeImageURL}">
+              <img src="${r.webformatURL}" alt="${r.tags}" />
+              <div class="features">
+                  <p>Likes: ${r.likes}</p>
+                  <p>Views: ${r.views}</p>
+                  <p>Comments: ${r.comments}</p>
+                  <p>Downloads: ${r.downloads}</p>
+              </div>
+          </a>
+        `).join("");t.innerHTML=o,new l(".gallery a")}function f(){document.getElementById("loader").classList.remove("hidden")}function c(){document.getElementById("loader").classList.add("hidden")}document.querySelector("form").addEventListener("submit",s=>{s.preventDefault();const t=document.getElementById("search-input").value.trim();if(!t){a.error({title:"Error",message:"Please enter a search query!"});return}f(),u(t).then(o=>{c(),o&&o.hits?d(o.hits):a.error({title:"Error",message:"Something went wrong. Please try again later."})}).catch(o=>{c(),a.error({title:"Error",message:"Something went wrong. Please try again later."}),console.error("Error:",o)})});
+//# sourceMappingURL=commonHelpers.js.map
