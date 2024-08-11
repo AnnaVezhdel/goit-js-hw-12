@@ -28,12 +28,12 @@ document.querySelector('form').addEventListener('submit', async (event) => {
     clearGallery();
     showLoader();
 
-    const data = await fetchImages(query, page);
+    const datas = await fetchImages(query, page);
     hideLoader();
 
-        if (data && data.hits.length > 0) {
-            totalHits = data.totalHits;
-            renderGallery(data.hits);
+        if (datas && datas.hits.length > 0) {
+            totalHits = datas.totalHits;
+            renderGallery(datas.hits);
             showLoadMoreButton();
         } else {
             iziToast.error({
@@ -47,11 +47,11 @@ document.querySelector('.btn').addEventListener('click', async () => {
     page += 1;
     showLoader();
 
-const data = await fetchImages(query, page);
+const datas = await fetchImages(query, page);
 hideLoader();
 
-    if (data && data.hits.length > 0) {
-        renderGallery(data.hits);
+    if (datas && datas.hits.length > 0) {
+        renderGallery(datas.hits);
         scrollPage();
         if (page * 15 >= totalHits) {
             hideLoadMoreButton();
