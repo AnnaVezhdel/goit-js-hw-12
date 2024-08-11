@@ -1,4 +1,5 @@
-export function fetchImages(query) {
+import axios from "axios";
+export async function fetchImages(query, page = 1) {
     const URL = "https://pixabay.com/api";
     const API_KEY = "45306950-544d7ee3c7cf7db24fb2a5eae";
 
@@ -8,16 +9,18 @@ export function fetchImages(query) {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: 'true',
+        per_page: 15,
+        page: page
     });
 
-    return fetch(`${URL}/?${params.toString()}`).then((response) => {
+    try {
+        const response = await fetch(`${URL}/?${params.toString()}`);
     if (!response.ok) {
         throw new Error(response.status);
     }
-    return response.json();
-    })
-    .catch(error => {
+    return await response.json();
+    } catch(error) {
         console.error('Error:', error);
         return null;
-    });
+    };
 }

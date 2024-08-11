@@ -39,4 +39,10 @@ export function showLoader() {
 export function hideLoader() {
   document.getElementById('loader').classList.add('hidden');
 }
+export function showLoadMoreButton() {
+  document.querySelector('.btn').classList.remove('hidden');
+}
 
+export function hideLoadMoreButton() {
+  document.querySelector('.btn').classList.add('hidden');
+}
