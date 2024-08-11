@@ -16,7 +16,7 @@ export function renderGallery(images) {
 const imageCards = images.map(image => {
   return `
           <a class="gallery-item" href="${image.largeImageURL}">
-              <img src="${image.webformatURL}" alt="${image.tags}" />
+              <img src="${image.webformatURL}" alt="${image.tags}" class="gallery-image"/>
               <div class="features">
                   <p>Likes: ${image.likes}</p>
                   <p>Views: ${image.views}</p>

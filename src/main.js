@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import iziToast from 'izitoast';
 
 import 'izitoast/dist/css/iziToast.min.css';
@@ -52,11 +50,11 @@ document.querySelector('form').addEventListener('submit', async event => {
 
 document.querySelector('.btn').addEventListener('click', async () => {
   page += 1;
-  showLoader();
 
+  showLoader();
   const newData = await fetchImages(query, page);
-    data.hits.push(...newData.hits);
-//   data.hits = [...data.hits, ...newData.hits];
+  data.hits.push(...newData.hits);
+  //   data.hits = [...data.hits, ...newData.hits];
 
   hideLoader();
   if (data && data.hits.length > 0) {
