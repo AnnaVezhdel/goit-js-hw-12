@@ -28,6 +28,8 @@ document.querySelector('form').addEventListener('submit', async event => {
     return;
   }
 
+document.getElementById('search-input').value = '';
+
   page = 1;
   hideLoadMoreButton();
   clearGallery();
@@ -39,7 +41,10 @@ document.querySelector('form').addEventListener('submit', async event => {
   if (data && data.hits.length > 0) {
     totalHits = data.totalHits;
     renderGallery(data.hits);
+
+    if(page * 15 < totalHits) {
     showLoadMoreButton();
+    }
   } else {
     iziToast.error({
       title: 'Error',
